@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.tsx --format esm --dts --external react"
+    "build": "tsup"
   },
   "peerDependencies": {
     "react": "^19.0.0"

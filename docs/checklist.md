@@ -9,3 +9,15 @@
 - [ ] Storybook and Chromatic
 - [ ] Source installation CLI
 - [ ] Browser accessibility and release validation
+
+## Continued implementation
+
+- [x] Checkbox, TextArea, Select, Slider, ProgressBar and SearchField
+- [x] Nine native-control interaction tests
+- [x] Next.js documentation starter with shared component demos and theme preview
+- [x] Production Next.js build and HTTP content smoke check
+- [ ] Complete standalone stories for every public component and interaction state
+- [ ] Full docs localization, search and API routes
+- [x] Storybook 10.6.5 Vite gallery builds from shared source
+- [x] Chromatic workflow configured (not executed; project token required in GitHub)
+- [ ] Chromatic baseline captured and reviewed
