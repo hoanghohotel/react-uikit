@@ -1,3 +1,10 @@
+import { cva } from "class-variance-authority";
+const buttonStyles = cva("uik-button", {
+  variants: {
+    size: { small: "uik-button-small", medium: "", large: "uik-button-large" },
+  },
+  defaultVariants: { size: "medium" },
+});
 import {
   forwardRef,
   type ButtonHTMLAttributes,
@@ -7,11 +14,15 @@ import {
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "destructive";
   loading?: boolean;
+  size?: "small" | "medium" | "large";
+  loadingLabel?: string;
 }
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {
       variant = "primary",
+      size = "medium",
+      loadingLabel = "Loading…",
       loading = false,
       disabled,
       children,
@@ -29,9 +40,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         aria-busy={loading || undefined}
         data-variant={variant}
-        className={"uik-button " + className}
+        className={buttonStyles({ size, className })}
       >
-        {loading ? <span role="status">Loading…</span> : children}
+        {loading ? <span role="status">{loadingLabel}</span> : children}
       </button>
     );
   },
@@ -72,3 +83,7 @@ export const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   },
 );
 export * from "./inputs";
+export * from "./foundation";
+export * from "./navigation";
+export * from "./data";
+export * from "./accessories";

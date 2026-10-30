@@ -1,17 +1,68 @@
 # React UIKit
 
-Independent React design system under development; not affiliated with Apple. Not release-ready.
+Independent React + TypeScript design system inspired by platform interface principles. Not affiliated with Apple. MIT licensed; no proprietary fonts, icons or application assets are included.
 
-Use Node 24 and pnpm 11. Run `pnpm install`, `pnpm build`, `pnpm typecheck`, `pnpm test`, and `pnpm lint`. Import styles from `@react-uikit/tokens/theme.css`.
+This is a development preview. Packages and the documentation site have not been published.
 
-Initial exports: Button, TextField, Switch, Card, GlassSurface, ChevronRight, useControllableState, cn. See docs/checklist.md for remaining scope. No packages have been published.
+## Develop
 
-## Local applications
+Use Node 24 and pnpm 11.25.0 in the existing checkout; no additional worktree is needed.
 
-After `pnpm install --frozen-lockfile` and `pnpm build`, run `pnpm --filter @react-uikit/docs dev` for the Next.js documentation, or `pnpm --filter @react-uikit/storybook dev` for the component gallery. Production docs run with `pnpm --filter @react-uikit/docs start`. Processes must be restarted in new environments. Use the existing checkout; no additional Git worktree is needed.
+```sh
+pnpm install --frozen-lockfile
+pnpm build
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm check:packages
+```
 
-See [component contracts](docs/components.md) and [implementation status](docs/checklist.md). Current demos use local React state only.
+Build first so consumers can resolve workspace package declarations. `pnpm build` includes packages, Next.js documentation, Storybook, the Tailwind playground, and both consumer examples.
 
-## Browser checks
+```sh
+pnpm --filter @react-uikit/docs dev
+pnpm --filter @react-uikit/storybook dev
+pnpm --filter @react-uikit/playground dev
+pnpm --filter @react-uikit/example-react dev
+pnpm --filter @react-uikit/example-next dev
+```
 
-After `pnpm build`, run `pnpm exec playwright install chromium` and `pnpm test:browser`. In this cloud environment the browser CDN is blocked; use the preinstalled Chromium with `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium pnpm test:browser`. Tests launch a production docs server on port 3100 and stop it on completion.
+Processes must be restarted in new environments. Documentation includes English/Vietnamese sections, searchable navigation, copyable code, live previews, API tables, an interaction laboratory and three templates. Example data is local state and resets on reload.
+
+## Packages
+
+| Package                          | Purpose                                                         |
+| -------------------------------- | --------------------------------------------------------------- |
+| `@react-uikit/core`              | Native foundations, controls, navigation and data display       |
+| `@react-uikit/core/interactive`  | Radix overlays, tabs, advanced controls and stateful APIs       |
+| `@react-uikit/glass`             | Basic/enhanced CSS materials and semantic glass surfaces        |
+| `@react-uikit/glass/interactive` | Accessible composite glass and bounded pointer effects          |
+| `@react-uikit/tokens`            | Semantic CSS tokens and Tailwind v4 mappings                    |
+| `@react-uikit/hooks`             | Controlled/uncontrolled state utility                           |
+| `@react-uikit/icons`             | Original SVG icon primitives                                    |
+| `@react-uikit/utils`             | Conditional class composition and Tailwind conflict merging     |
+| `@react-uikit/cli`               | Independent source templates with safe incremental installation |
+
+```tsx
+import "@react-uikit/tokens/theme.css";
+import { Button, TextField } from "@react-uikit/core";
+```
+
+Import client composites from the `/interactive` entry. Both package and source-owned workflows are documented; do not run an unscoped `npx react-uikit` command before publication and ownership verification.
+
+## Validation
+
+```sh
+pnpm exec playwright install chromium
+pnpm test:browser
+```
+
+The browser suite launches production docs on port 3100 and a static Storybook server on port 6006, then stops both. In this cloud environment the Playwright CDN is blocked; the validated fallback is:
+
+```sh
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium pnpm test:browser
+```
+
+It checks desktop/mobile Chromium interactions, axe scans, localization, templates, and every Storybook story. Mobile emulation is not an iOS Safari test. No full accessibility certification or cross-browser parity is claimed.
+
+See [validation evidence](docs/validation.md), [component contracts](docs/component-contracts.md), [source CLI](docs/cli.md), [tokens](docs/tokens.md), [implementation checklist](docs/checklist.md) and [release preparation](docs/release.md). Regenerate the API tables with `pnpm docs:api`.

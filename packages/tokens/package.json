@@ -2,10 +2,19 @@
   "name": "@react-uikit/tokens",
   "version": "0.1.0",
   "files": [
-    "theme.css"
+    "theme.css",
+    "tailwind.css",
+    "LICENSE"
   ],
   "exports": {
-    "./theme.css": "./theme.css"
+    "./theme.css": "./theme.css",
+    "./tailwind.css": "./tailwind.css"
   },
-  "sideEffects": true
+  "sideEffects": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoanghohotel/react-uikit.git",
+    "directory": "packages/tokens"
+  }
 }

@@ -1,0 +1,30 @@
+{
+  "@react-uikit/core": {
+    "status": "not_publicly_found",
+    "note": "Does not establish scope ownership."
+  },
+  "@react-uikit/glass": {
+    "status": "not_publicly_found",
+    "note": "Does not establish scope ownership."
+  },
+  "@react-uikit/tokens": {
+    "status": "not_publicly_found",
+    "note": "Does not establish scope ownership."
+  },
+  "@react-uikit/icons": {
+    "status": "not_publicly_found",
+    "note": "Does not establish scope ownership."
+  },
+  "@react-uikit/hooks": {
+    "status": "not_publicly_found",
+    "note": "Does not establish scope ownership."
+  },
+  "@react-uikit/utils": {
+    "status": "not_publicly_found",
+    "note": "Does not establish scope ownership."
+  },
+  "@react-uikit/cli": {
+    "status": "not_publicly_found",
+    "note": "Does not establish scope ownership."
+  }
+}

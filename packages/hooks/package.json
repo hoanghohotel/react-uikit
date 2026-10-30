@@ -6,7 +6,8 @@
     "*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "exports": {
     ".": {
@@ -20,5 +21,11 @@
   "peerDependencies": {
     "react": "^19.0.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoanghohotel/react-uikit.git",
+    "directory": "packages/hooks"
+  }
 }

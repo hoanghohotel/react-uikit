@@ -6,7 +6,8 @@
     "*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "exports": {
     ".": {
@@ -17,11 +18,14 @@
   "scripts": {
     "build": "tsup src/index.tsx --format esm --dts --external react"
   },
-  "peerDependencies": {
-    "react": "^19.0.0"
-  },
   "dependencies": {
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoanghohotel/react-uikit.git",
+    "directory": "packages/utils"
   }
 }

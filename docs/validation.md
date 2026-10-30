@@ -1,19 +1,25 @@
-# Validation record
+# Validation evidence
 
-Local checks completed:
+The implementation remains a development preview. These are observed checks, not a release certification.
 
-- `pnpm typecheck`: package and test TypeScript passed.
-- `pnpm lint`: passed.
-- `pnpm test`: 12 React interaction tests and 12 CLI tests passed.
-- `pnpm build`: builds library declarations, CLI syntax check, Next.js production site and Storybook gallery.
-- `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium pnpm test:browser`: 18 tests passed against the production Next.js site, across desktop and emulated mobile viewports.
+## Completed locally
 
-Browser checks cover hydrated form submission, modal focus containment and restoration, Escape dismissal, keyboard tab selection, light/dark WCAG A/AA axe scans, the open dialog axe scan, system theme switching, code-block focus and horizontal overflow. They found and verified fixes for nested dark-theme contrast and keyboard access to scrollable code.
+- Frozen pnpm installation succeeds across 13 workspace projects.
+- TypeScript checks packages, tests, Storybook, Vite consumers and Playwright configuration. Both Next.js applications use strict TypeScript and build successfully.
+- ESLint passes using the supported ESLint 10 / typescript-eslint combination.
+- 38 React/unit tests and 15 CLI tests pass. Covered contracts include native controls, controlled state, sorting, virtualization, calendar selection, overlays, focus, notifications, source installation and consumer-file protection.
+- All 11 build tasks succeed: packages, documentation, Storybook, playground and React/Next.js examples. The Tailwind v4 playground emits semantic utilities.
+- Seven package exports and declaration/client boundaries are verified. All seven tarballs were packed, inspected and installed in a separate npm consumer. React server rendering, ESM imports and TypeScript consumer compilation passed.
+- CLI dependency installation was exercised in a separate React project with a real npm install of Radix Dialog.
+- The browser suite passed 37 checks, including every one of the then-current 147 Storybook stories. A subsequent documentation run passed its 36 established cases, then two new localized-live-demo cases passed after scoping an ambiguous status locator. The suite now contains 39 cases. Expanded Storybook controls and Glass variants are being rechecked separately.
+- Chromium checks cover desktop/mobile layouts, hydration, keyboard navigation, modal focus, menus/popovers/sheets, theme contrast, forced-colors glass fallback, clipboard copy, localization, templates and axe scans.
 
-The Playwright browser CDN is blocked by this environment's network policy. Local validation used the installed system Chromium. CI installs Playwright's pinned Chromium and runs the same suite. Remote GitHub Actions results have not been verified. Mobile viewport emulation is not an iOS Safari or WebKit test. Automated axe checks are not a complete accessibility audit; screen-reader review, remaining components and additional engines are pending.
+## Environment and external checks
 
-CLI checks cover incremental installation, idempotence, dry runs, independent source output, modified file protection and symlink rejection. The installer does not merge edited CSS automatically.
+Playwright browser downloads from cdn.playwright.dev are currently blocked. Local browser validation uses `/usr/bin/chromium`; this is not Playwright's pinned browser. Firefox, WebKit and manual screen-reader review remain outstanding. A network draft adds the denied browser CDN and GitHub API domains; it is saved but not published or applied.
 
-Storybook still emits a gallery chunk-size warning. Dependency installation reports deprecation notices for ESLint 9 and jest-dom 6.10; modernization remains outstanding.
+GitHub API access returns Forbidden, so remote Actions results have not been verified. Native Git push works. Chromatic is configured for manual execution and GitHub Actions; its latest upload result will be recorded after execution. Project tokens are never stored in repository files.
 
-Chromatic is configured but has not run locally. Set `CHROMATIC_PROJECT_TOKEN` in GitHub Actions secrets before using visual review. No packages or website have been published.
+Public npm lookups did not find the seven package names. This does not establish ownership of the npm scope or permission to publish. See npm-name-check.json and release.md.
+
+Storybook emits a gallery chunk-size warning and Vite notes ignored client directives in its browser-only bundle. Published library interactive entries preserve client directives. No package or documentation deployment has been published.

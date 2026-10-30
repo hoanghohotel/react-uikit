@@ -1,46 +1,56 @@
-# Implementation status
+# Implementation checklist
 
-- [x] Initial workspace and package exports
-- [x] Initial semantic themes and glass fallback
-- [x] Button, TextField, Switch and Card
-- [ ] Complete token taxonomy and Tailwind mappings
-- [ ] Remaining component families and comprehensive tests
-- [ ] Next.js documentation, localization and templates
-- [ ] Storybook and Chromatic
-- [ ] Source installation CLI
-- [ ] Browser accessibility and release validation
+## Phase 1 — Workspace and foundations
 
-## Continued implementation
+- [x] pnpm/Turborepo workspace, strict TypeScript, shared ESLint/TypeScript tooling
+- [x] Seven reusable packages, ESM exports, declaration files and MIT licensing
+- [x] Semantic colors, typography, layout, shape, motion and glass tokens
+- [x] Light/dark/system appearance, nested theme boundaries and Tailwind v4 integration
+- [x] Changesets, CI and package artifact validation
 
-- [x] Checkbox, TextArea, Select, Slider, ProgressBar and SearchField
-- [x] Nine native-control interaction tests
-- [x] Next.js documentation starter with shared component demos and theme preview
-- [x] Production Next.js build and HTTP content smoke check
-- [ ] Complete standalone stories for every public component and interaction state
-- [ ] Full docs localization, search and API routes
-- [x] Storybook 10.6.5 Vite gallery builds from shared source
-- [x] Chromatic workflow configured (not executed; project token required in GitHub)
-- [ ] Chromatic baseline captured and reviewed
+## Phase 2 — Core controls
 
-## Source installation CLI
+- [x] Foundation, form controls, stepper, segmented control, native pickers
+- [x] Native refs and attributes; controlled/uncontrolled APIs where applicable
+- [x] Unit/interaction coverage and component API documentation
 
-- [x] Real local CLI binary with three independent source templates
-- [x] Dry run, React/Next detection and package manager detection
-- [x] Existing path/symlink protection and installation tests
-- [x] Incremental installation into existing generated directories
-- [ ] Dependency installation for components needing additional packages
-- [ ] CLI npm publication and name availability check
+## Phase 3 — Glass
 
-## Interactive primitives
+- [x] Surface, button, toolbar, navigation, tab bar, sidebar, sheet, popover, segmented control
+- [x] Basic/enhanced materials, bounded pointer highlight and Motion return transition
+- [x] Explicit opaque, reduced-motion, reduced-transparency and high-contrast CSS behavior
+- [x] Playground, Storybook examples and Chromium fallback checks
+- [ ] Cross-engine unsupported-blur and reduced-transparency verification
 
-- [x] Composable Radix Dialog with modal overlay, title, description and close control
-- [x] Composable Radix Tabs with keyboard navigation and panel associations
-- [x] Separate client entry, docs and Storybook examples
-- [x] Chromium focus trapping and axe checks for the docs demos (desktop/mobile viewports)
+## Phase 4 — Navigation, presentation and data
 
-## Browser validation
+- [x] Navigation, tabs, sidebar groups, toolbars, breadcrumbs, split view and pagination
+- [x] Dialog, alert/action sheet, bottom sheet, popover, tooltip, toast, context/menu primitives
+- [x] Lists, tables, sortable data table, collections, avatars, skeleton and empty state
+- [x] Calendar, command palette, fixed-row virtual list, refresh and native suggestions
+- [x] Keyboard/focus tests for representative composite workflows
 
-- [x] 18 Playwright checks against production docs
-- [x] Nested dark-theme contrast and scrollable code keyboard access fixed
-- [x] CI browser installation, test command and failure trace upload configured
-- [ ] Firefox, WebKit and manual screen-reader validation
+## Phase 5 — Documentation, source CLI and examples
+
+- [x] Next.js documentation with 24 English/Vietnamese content routes
+- [x] Searchable navigation, copy code, theme preview and generated API tables
+- [x] Settings, productivity and administration templates with local interactions
+- [x] React/Vite and Next.js consumer examples; Tailwind playground
+- [x] Incremental source installation, dry-run and edited-file/symlink protection
+- [x] Dialog dependency installation; real temporary React consumer installation
+- [x] Storybook categories, individual examples, responsive Chromatic configuration
+- [ ] Every locale string in every live component demo translated (content pages are bilingual)
+- [ ] Exhaustive state coverage for every composable subcomponent
+
+## Phase 6 — Validation and release preparation
+
+- [x] Local typecheck, lint, unit/CLI tests and monorepo production builds
+- [x] Chromium desktop/mobile interaction and axe checks
+- [x] Package export/declaration/client-boundary checks and release instructions
+- [ ] Final Storybook browser sweep completed after latest gallery additions
+- [ ] Firefox/WebKit and manual screen-reader review
+- [ ] GitHub Actions results verified (GitHub API returns Forbidden here)
+- [ ] Chromatic baseline captured and reviewed (project token unavailable)
+- [ ] npm scope ownership and release publication approved
+
+The project remains a development preview. A populated checklist is not a release certification; see validation.md for executed commands, counts and limitations.

@@ -6,19 +6,37 @@
     "*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./interactive": {
+      "types": "./dist/interactive.d.ts",
+      "import": "./dist/interactive.js"
     }
   },
   "scripts": {
-    "build": "tsup src/index.tsx --format esm --dts --external react"
+    "build": "tsup"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.3.1",
+    "@radix-ui/react-popover": "^1.3.1",
+    "@radix-ui/react-toggle-group": "^1.2.1",
+    "@radix-ui/react-toolbar": "^1.2.1",
+    "motion": "^14.7.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoanghohotel/react-uikit.git",
+    "directory": "packages/glass"
+  }
 }

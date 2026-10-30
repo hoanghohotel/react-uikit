@@ -1,0 +1,1049 @@
+[
+  {
+    "package": "core",
+    "name": "IconProps",
+    "inherits": "extends SVGProps<SVGSVGElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/accessories.tsx"
+  },
+  {
+    "package": "core",
+    "name": "IconButtonProps",
+    "inherits": "extends ButtonProps",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/accessories.tsx"
+  },
+  {
+    "package": "core",
+    "name": "ProgressIndicatorProps",
+    "inherits": "extends HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/accessories.tsx"
+  },
+  {
+    "package": "core",
+    "name": "DataColumn",
+    "inherits": "",
+    "props": [
+      {
+        "name": "key",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "header",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "render",
+        "type": "(row: T) => ReactNode",
+        "required": true
+      },
+      {
+        "name": "sortValue",
+        "type": "(row: T) => string | number",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/advanced.tsx"
+  },
+  {
+    "package": "core",
+    "name": "DataTableProps",
+    "inherits": "",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "rows",
+        "type": "readonly T[]",
+        "required": true
+      },
+      {
+        "name": "columns",
+        "type": "readonly DataColumn<T>[]",
+        "required": true
+      },
+      {
+        "name": "getRowKey",
+        "type": "(row: T) => string",
+        "required": true
+      },
+      {
+        "name": "emptyMessage",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "style",
+        "type": "CSSProperties",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/advanced.tsx"
+  },
+  {
+    "package": "core",
+    "name": "VirtualListProps",
+    "inherits": "extends Omit<\n  HTMLAttributes<HTMLDivElement>,\n  \"children\"\n>",
+    "props": [
+      {
+        "name": "items",
+        "type": "readonly T[]",
+        "required": true
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "itemHeight",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "overscan",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "getKey",
+        "type": "(item: T) => string",
+        "required": true
+      },
+      {
+        "name": "renderItem",
+        "type": "(item: T, index: number) => ReactNode",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/advanced.tsx"
+  },
+  {
+    "package": "core",
+    "name": "PullToRefreshProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "onRefresh",
+        "type": "() => Promise<void>",
+        "required": true
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "refreshingLabel",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "errorLabel",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/advanced.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SearchSuggestionsProps",
+    "inherits": "extends Omit<\n  InputHTMLAttributes<HTMLInputElement>,\n  \"type\" | \"list\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "suggestions",
+        "type": "readonly string[]",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/advanced.tsx"
+  },
+  {
+    "package": "core",
+    "name": "Command",
+    "inherits": "",
+    "props": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "onSelect",
+        "type": "() => void",
+        "required": true
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/advanced.tsx"
+  },
+  {
+    "package": "core",
+    "name": "CommandPaletteProps",
+    "inherits": "",
+    "props": [
+      {
+        "name": "commands",
+        "type": "readonly Command[]",
+        "required": true
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "triggerLabel",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "searchLabel",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "emptyMessage",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/advanced.tsx"
+  },
+  {
+    "package": "core",
+    "name": "CalendarProps",
+    "inherits": "extends Omit<\n  HTMLAttributes<HTMLDivElement>,\n  \"defaultValue\" | \"onChange\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: string) => void",
+        "required": false
+      },
+      {
+        "name": "locale",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "min",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "previousLabel",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "nextLabel",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "initialMonth",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/calendar.tsx"
+  },
+  {
+    "package": "core",
+    "name": "TableProps",
+    "inherits": "extends TableHTMLAttributes<HTMLTableElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/data.tsx"
+  },
+  {
+    "package": "core",
+    "name": "GridViewProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "minWidth",
+        "type": "CSSProperties[\"minWidth\"]",
+        "required": false
+      },
+      {
+        "name": "gap",
+        "type": "CSSProperties[\"gap\"]",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/data.tsx"
+  },
+  {
+    "package": "core",
+    "name": "CollectionViewProps",
+    "inherits": "extends Omit<\n  HTMLAttributes<HTMLUListElement>,\n  \"children\"\n>",
+    "props": [
+      {
+        "name": "items",
+        "type": "readonly T[]",
+        "required": true
+      },
+      {
+        "name": "getKey",
+        "type": "(item: T) => string",
+        "required": true
+      },
+      {
+        "name": "renderItem",
+        "type": "(item: T) => ReactNode",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/data.tsx"
+  },
+  {
+    "package": "core",
+    "name": "AlertProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "tone",
+        "type": "\"info\" | \"success\" | \"warning\" | \"destructive\"",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/data.tsx"
+  },
+  {
+    "package": "core",
+    "name": "TextProps",
+    "inherits": "extends HTMLAttributes<HTMLParagraphElement>",
+    "props": [
+      {
+        "name": "tone",
+        "type": "\"default\" | \"secondary\" | \"destructive\"",
+        "required": false
+      },
+      {
+        "name": "size",
+        "type": "\"body\" | \"callout\" | \"footnote\" | \"caption\"",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/foundation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "HeadingProps",
+    "inherits": "extends HTMLAttributes<HTMLHeadingElement>",
+    "props": [
+      {
+        "name": "level",
+        "type": "1 | 2 | 3 | 4 | 5 | 6",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/foundation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "StackProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "gap",
+        "type": "CSSProperties[\"gap\"]",
+        "required": false
+      },
+      {
+        "name": "align",
+        "type": "CSSProperties[\"alignItems\"]",
+        "required": false
+      },
+      {
+        "name": "justify",
+        "type": "CSSProperties[\"justifyContent\"]",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/foundation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "BadgeProps",
+    "inherits": "extends HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "tone",
+        "type": "\"neutral\" | \"success\" | \"warning\" | \"destructive\"",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/foundation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SpacerProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "size",
+        "type": "CSSProperties[\"height\"]",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/foundation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "AvatarProps",
+    "inherits": "extends ImgHTMLAttributes<HTMLImageElement>",
+    "props": [
+      {
+        "name": "alt",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/foundation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "EmptyStateProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "action",
+        "type": "ReactNode",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/foundation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "ButtonProps",
+    "inherits": "extends ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "variant",
+        "type": "\"primary\" | \"secondary\" | \"destructive\"",
+        "required": false
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "size",
+        "type": "\"small\" | \"medium\" | \"large\"",
+        "required": false
+      },
+      {
+        "name": "loadingLabel",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/index.tsx"
+  },
+  {
+    "package": "core",
+    "name": "TextFieldProps",
+    "inherits": "extends InputHTMLAttributes<HTMLInputElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/index.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SwitchProps",
+    "inherits": "extends Omit<\n  InputHTMLAttributes<HTMLInputElement>,\n  \"type\" | \"role\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/index.tsx"
+  },
+  {
+    "package": "core",
+    "name": "CheckboxProps",
+    "inherits": "extends Omit<\n  InputHTMLAttributes<HTMLInputElement>,\n  \"type\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/inputs.tsx"
+  },
+  {
+    "package": "core",
+    "name": "TextAreaProps",
+    "inherits": "extends TextareaHTMLAttributes<HTMLTextAreaElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/inputs.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SelectProps",
+    "inherits": "extends SelectHTMLAttributes<HTMLSelectElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/inputs.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SliderProps",
+    "inherits": "extends Omit<\n  InputHTMLAttributes<HTMLInputElement>,\n  \"type\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/inputs.tsx"
+  },
+  {
+    "package": "core",
+    "name": "ProgressBarProps",
+    "inherits": "extends ProgressHTMLAttributes<HTMLProgressElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/inputs.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SearchFieldProps",
+    "inherits": "extends Omit<\n  InputHTMLAttributes<HTMLInputElement>,\n  \"type\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/inputs.tsx"
+  },
+  {
+    "package": "core",
+    "name": "DialogContentProps",
+    "inherits": "extends ComponentPropsWithoutRef<\n  typeof DialogPrimitive.Content\n>",
+    "props": [
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/interactive.tsx"
+  },
+  {
+    "package": "core",
+    "name": "NavigationBarProps",
+    "inherits": "extends HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/navigation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "BreadcrumbItem",
+    "inherits": "",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/navigation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "BreadcrumbsProps",
+    "inherits": "extends Omit<\n  HTMLAttributes<HTMLElement>,\n  \"children\"\n>",
+    "props": [
+      {
+        "name": "items",
+        "type": "BreadcrumbItem[]",
+        "required": true
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/navigation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SidebarGroupProps",
+    "inherits": "extends HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/navigation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SplitViewProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "sidebar",
+        "type": "ReactNode",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/navigation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "BackButtonProps",
+    "inherits": "extends ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/navigation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "TabBarProps",
+    "inherits": "extends Omit<NavigationBarProps, \"children\">",
+    "props": [
+      {
+        "name": "items",
+        "type": "{ label: string; href: string }[]",
+        "required": true
+      },
+      {
+        "name": "currentHref",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/navigation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SheetContentProps",
+    "inherits": "extends ComponentPropsWithoutRef<\n  typeof Dialog.Content\n>",
+    "props": [
+      {
+        "name": "side",
+        "type": "\"start\" | \"end\" | \"bottom\"",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/presentation.tsx"
+  },
+  {
+    "package": "core",
+    "name": "StepperProps",
+    "inherits": "extends Omit<\n  HTMLAttributes<HTMLDivElement>,\n  \"defaultValue\" | \"onChange\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "defaultValue",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: number) => void",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/state-controls.tsx"
+  },
+  {
+    "package": "core",
+    "name": "ToggleButtonProps",
+    "inherits": "extends Omit<\n  ButtonHTMLAttributes<HTMLButtonElement>,\n  \"onChange\"\n>",
+    "props": [
+      {
+        "name": "pressed",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "defaultPressed",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "onPressedChange",
+        "type": "(pressed: boolean) => void",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/state-controls.tsx"
+  },
+  {
+    "package": "core",
+    "name": "Choice",
+    "inherits": "",
+    "props": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/state-controls.tsx"
+  },
+  {
+    "package": "core",
+    "name": "RadioGroupProps",
+    "inherits": "extends Omit<\n  Radio.RadioGroupProps,\n  \"children\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "options",
+        "type": "Choice[]",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/state-controls.tsx"
+  },
+  {
+    "package": "core",
+    "name": "SegmentedControlProps",
+    "inherits": "extends Omit<\n  Toggle.ToggleGroupSingleProps,\n  \"type\" | \"children\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "options",
+        "type": "Choice[]",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/state-controls.tsx"
+  },
+  {
+    "package": "core",
+    "name": "PaginationProps",
+    "inherits": "extends Omit<\n  HTMLAttributes<HTMLElement>,\n  \"onChange\"\n>",
+    "props": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "pageCount",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "onPageChange",
+        "type": "(page: number) => void",
+        "required": true
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "previousLabel",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "nextLabel",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "source": "packages/core/src/state-controls.tsx"
+  },
+  {
+    "package": "core",
+    "name": "DatePickerProps",
+    "inherits": "extends Omit<\n  InputHTMLAttributes<HTMLInputElement>,\n  \"type\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/core/src/state-controls.tsx"
+  },
+  {
+    "package": "glass",
+    "name": "GlassMaterialProps",
+    "inherits": "",
+    "props": [
+      {
+        "name": "material",
+        "type": "\"subtle\" | \"regular\" | \"prominent\"",
+        "required": false
+      },
+      {
+        "name": "level",
+        "type": "\"basic\" | \"enhanced\"",
+        "required": false
+      },
+      {
+        "name": "opaque",
+        "type": "boolean",
+        "required": false
+      }
+    ],
+    "source": "packages/glass/src/index.tsx"
+  },
+  {
+    "package": "glass",
+    "name": "GlassSurfaceProps",
+    "inherits": "extends HTMLAttributes<HTMLDivElement>, GlassMaterialProps",
+    "props": [],
+    "source": "packages/glass/src/index.tsx"
+  },
+  {
+    "package": "glass",
+    "name": "GlassButtonProps",
+    "inherits": "extends ButtonHTMLAttributes<HTMLButtonElement>, GlassMaterialProps",
+    "props": [],
+    "source": "packages/glass/src/index.tsx"
+  },
+  {
+    "package": "glass",
+    "name": "GlassNavigationBarProps",
+    "inherits": "extends HTMLAttributes<HTMLElement>, GlassMaterialProps",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "source": "packages/glass/src/index.tsx"
+  },
+  {
+    "package": "glass",
+    "name": "InteractiveGlassSurfaceProps",
+    "inherits": "extends GlassSurfaceProps",
+    "props": [
+      {
+        "name": "interaction",
+        "type": "\"static\" | \"interactive\"",
+        "required": false
+      }
+    ],
+    "source": "packages/glass/src/interactive.tsx"
+  },
+  {
+    "package": "glass",
+    "name": "GlassSegmentedControlProps",
+    "inherits": "extends Omit<\n  Toggle.ToggleGroupSingleProps,\n  \"type\" | \"children\"\n>",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "options",
+        "type": "{ value: string; label: string; disabled?: boolean }[]",
+        "required": true
+      }
+    ],
+    "source": "packages/glass/src/interactive.tsx"
+  }
+]

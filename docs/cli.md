@@ -22,3 +22,11 @@ If shared CSS has changed, the installer stops before creating the new component
 The source-owned components are a smaller API than the package-based components: Button and GlassButton support native button attributes, and Switch adds a required label. React refs are forwarded. No claim of package/source API parity is made.
 
 No dependency installation is needed for these three templates. Dependency installation for future Radix-based templates remains unimplemented.
+
+## Components with dependencies
+
+`add dialog` installs `@radix-ui/react-dialog` using the detected npm, pnpm, Yarn or Bun command before writing source. A dry-run prints the command without running it. If that dependency is already declared, its version is preserved. Installation failure leaves component source unwritten; the package manager may still have modified its own metadata, so inspect its output before retrying.
+
+The Dialog template exports Root, Trigger, Content, Title, Description and Close. It uses Radix directly, not `@react-uikit/core`. Always supply a title, description and explicit close control. Dependency installation was exercised in a temporary React consumer using npm.
+
+Supported names now include `dialog` in addition to the three dependency-free templates. Existing modified CSS still blocks an incremental add before any package-manager command runs. For an existing dependency declaration, compatibility is the consumer's responsibility; the installer does not silently upgrade it.

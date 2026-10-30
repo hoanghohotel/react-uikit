@@ -1,0 +1,22 @@
+{
+  "name": "@react-uikit/playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@react-uikit/core": "workspace:*",
+    "@react-uikit/glass": "workspace:*",
+    "@react-uikit/tokens": "workspace:*",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^7.0.0"
+  }
+}

@@ -5,7 +5,7 @@
   "fixed": [],
   "linked": [],
   "access": "public",
-  "baseBranch": "main",
+  "baseBranch": "feat/react-uikit",
   "updateInternalDependencies": "patch",
   "ignore": []
 }

@@ -5,9 +5,13 @@ export default function Page() {
       <header>
         <a href="#main">React UIKit</a>
         <nav aria-label="Main">
-          <a href="#installation">Installation</a>
+          <a href="/en/introduction">Documentation</a>
+          <a href="/templates">Templates</a>
           <a href="#components">Components</a>
           <a href="#glass">Glass</a>
+          <a href="/vi/introduction" lang="vi">
+            Tiếng Việt
+          </a>
         </nav>
       </header>
       <main id="main">

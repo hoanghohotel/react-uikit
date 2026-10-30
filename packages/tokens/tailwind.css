@@ -1,0 +1,24 @@
+@theme inline {
+  --color-background: var(--uik-background);
+  --color-foreground: var(--uik-foreground);
+  --color-primary: var(--uik-primary);
+  --color-secondary: var(--uik-secondary);
+  --color-surface: var(--uik-surface);
+  --color-destructive: var(--uik-destructive);
+  --color-success: var(--uik-success);
+  --color-warning: var(--uik-warning);
+  --color-border: var(--uik-border);
+  --radius-uikit: var(--uik-radius);
+  --font-sans: var(--uik-font);
+  --text-large-title: var(--uik-large-title);
+  --text-title-1: var(--uik-title-1);
+  --text-title-2: var(--uik-title-2);
+  --text-title-3: var(--uik-title-3);
+  --text-headline: var(--uik-headline);
+  --text-body: var(--uik-body);
+  --text-callout: var(--uik-callout);
+  --text-subheadline: var(--uik-subheadline);
+  --text-footnote: var(--uik-footnote);
+  --text-caption-1: var(--uik-caption-1);
+  --text-caption-2: var(--uik-caption-2);
+}

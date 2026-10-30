@@ -142,3 +142,53 @@ test("rejects symlink component files", async (t) => {
     /not a regular file/,
   );
 });
+test("dialog dry run reports dependencies without executing", async (t) => {
+  const dir = await project(t);
+  let called = false;
+  const logs = [];
+  await install(
+    ["add", "dialog", "--dry-run"],
+    dir,
+    (text) => logs.push(text),
+    async () => {
+      called = true;
+    },
+  );
+  assert.equal(called, false);
+  assert.match(logs.join("\n"), /npm install @radix-ui\/react-dialog/);
+  assert.deepEqual(await readdir(dir), ["package.json"]);
+});
+test("dialog installs required dependency before source", async (t) => {
+  const dir = await project(t);
+  let invocation;
+  await install(
+    ["add", "dialog"],
+    dir,
+    () => {},
+    async (...args) => {
+      invocation = args;
+      assert.deepEqual(await readdir(dir), ["package.json"]);
+    },
+  );
+  assert.equal(invocation[0], "npm");
+  assert.deepEqual(invocation[1], ["install", "@radix-ui/react-dialog@^1.3.1"]);
+  assert.match(
+    await readFile(path.join(dir, "uikit/dialog.tsx"), "utf8"),
+    /@radix-ui\/react-dialog/,
+  );
+});
+test("dependency failure leaves source untouched", async (t) => {
+  const dir = await project(t);
+  await assert.rejects(
+    install(
+      ["add", "dialog"],
+      dir,
+      () => {},
+      async () => {
+        throw new Error("offline");
+      },
+    ),
+    /Dependency installation failed/,
+  );
+  assert.deepEqual(await readdir(dir), ["package.json"]);
+});

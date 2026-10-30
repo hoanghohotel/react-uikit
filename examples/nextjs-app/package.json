@@ -1,0 +1,15 @@
+{
+  "name": "@react-uikit/example-next",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3200",
+    "build": "next build"
+  },
+  "dependencies": {
+    "next": "^16.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@react-uikit/core": "workspace:*",
+    "@react-uikit/tokens": "workspace:*"
+  }
+}

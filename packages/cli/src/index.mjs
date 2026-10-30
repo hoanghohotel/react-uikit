@@ -1,13 +1,21 @@
 #!/usr/bin/env node
 import { readFile, lstat, mkdir, writeFile, unlink } from "node:fs/promises";
 import path from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+const execute = promisify(execFile);
 import { fileURLToPath } from "node:url";
 const registry = new URL("../registry/", import.meta.url);
-const allowed = new Set(["button", "switch", "glass-button"]);
-export async function install(args, cwd = process.cwd(), log = console.log) {
+const allowed = new Set(["button", "switch", "glass-button", "dialog"]);
+export async function install(
+  args,
+  cwd = process.cwd(),
+  log = console.log,
+  run = execute,
+) {
   if (args.includes("--help")) {
     log(
-      "Usage: react-uikit add <button|switch|glass-button> [--dry-run]\nAdds independent React source and CSS to the uikit directory. Existing files are never overwritten.",
+      "Usage: react-uikit add <button|switch|glass-button|dialog> [--dry-run]\nAdds independent React source and CSS to the uikit directory. Existing files are never overwritten.",
     );
     return;
   }
@@ -17,7 +25,7 @@ export async function install(args, cwd = process.cwd(), log = console.log) {
     !allowed.has(component) ||
     flags.some((x) => x !== "--dry-run")
   )
-    throw new Error("Use add <button|switch|glass-button> [--dry-run].");
+    throw new Error("Use add <button|switch|glass-button|dialog> [--dry-run].");
   const project = JSON.parse(
     await readFile(path.join(cwd, "package.json"), "utf8"),
   );
@@ -32,7 +40,10 @@ export async function install(args, cwd = process.cwd(), log = console.log) {
       ? "pnpm"
       : (await statOrNull(path.join(cwd, "yarn.lock")))
         ? "yarn"
-        : "npm");
+        : (await statOrNull(path.join(cwd, "bun.lock"))) ||
+            (await statOrNull(path.join(cwd, "bun.lockb")))
+          ? "bun"
+          : "npm");
   if (!["npm", "pnpm", "yarn", "bun"].includes(manager))
     throw new Error(`Unsupported package manager: ${manager}`);
   const target = path.join(cwd, "uikit");
@@ -60,16 +71,36 @@ export async function install(args, cwd = process.cwd(), log = console.log) {
         );
     } else planned.push(i);
   }
+  const dependencies =
+    component === "dialog" && !deps["@radix-ui/react-dialog"]
+      ? ["@radix-ui/react-dialog@^1.3.1"]
+      : [];
   log(
-    `${deps.next ? "Next.js" : "React"} project; package manager: ${manager}. No additional dependencies are needed.`,
+    `${deps.next ? "Next.js" : "React"} project; package manager: ${manager}.`,
   );
-  if (!planned.length) {
+  if (!planned.length && !dependencies.length) {
     log("Already installed; no changes.");
     return;
   }
+  const commandArgs = [manager === "npm" ? "install" : "add", ...dependencies];
   if (flags.includes("--dry-run")) {
-    log(`Would create: ${planned.map((i) => "uikit/" + files[i]).join(", ")}`);
+    log(
+      `Would create: ${planned.map((i) => "uikit/" + files[i]).join(", ") || "none"}`,
+    );
+    if (dependencies.length)
+      log(`Would run: ${manager} ${commandArgs.join(" ")}`);
     return;
+  }
+  if (dependencies.length) {
+    log(`Installing ${dependencies.join(", ")}`);
+    try {
+      await run(manager, commandArgs, { cwd });
+    } catch (error) {
+      throw new Error(
+        "Dependency installation failed; component files were not written. Check your package manager output and retry.",
+        { cause: error },
+      );
+    }
   }
   if (!targetInfo) await mkdir(target);
   const written = [];
