@@ -20,7 +20,7 @@
 - [x] Basic/enhanced materials, bounded pointer highlight and Motion return transition
 - [x] Explicit opaque, reduced-motion, reduced-transparency and high-contrast CSS behavior
 - [x] Playground, Storybook examples and Chromium fallback checks
-- [ ] Cross-engine unsupported-blur and reduced-transparency verification
+- [x] Cross-engine Glass fallback cascade verification; unsupported blur and Firefox/WebKit transparency are simulated (see browser-matrix.md)
 
 ## Phase 4 — Navigation, presentation and data
 
@@ -41,6 +41,7 @@
 - [x] Storybook categories, individual examples, responsive Chromatic configuration
 - [x] English/Vietnamese content and live documentation component demos
 - [x] English/Vietnamese application templates, accessible labels and interaction feedback
+- [x] Added 19 selected, disabled, boundary and open-overlay stories (see browser-matrix.md)
 - [ ] Exhaustive state coverage for every composable subcomponent
 
 ## Phase 6 — Validation and release preparation
@@ -48,7 +49,7 @@
 - [x] Local typecheck, lint, unit/CLI tests and monorepo production builds
 - [x] Chromium desktop/mobile interaction and axe checks
 - [x] Package export/declaration/client-boundary checks and release instructions
-- [x] Final 166-story browser sweep completed after latest gallery additions
+- [x] Full 185-story browser sweep completed after latest state additions
 - [x] Firefox and WebKit: 20 documentation checks each pass
 - [ ] Manual screen-reader review
 - [x] GitHub Checks workflow verified successful

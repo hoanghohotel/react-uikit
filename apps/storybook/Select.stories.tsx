@@ -32,3 +32,7 @@ export const Dark = {
     </div>
   ),
 };
+
+export const Disabled = { ...Default, args: { disabled: true } };
+
+export const Selected = { ...Default, args: { defaultValue: "Europe" } };

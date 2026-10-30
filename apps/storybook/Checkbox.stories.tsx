@@ -32,3 +32,10 @@ export const Disabled = {
     <UI.Checkbox label="Accept terms" disabled {...args} />
   ),
 };
+
+export const Checked = { ...Default, args: { defaultChecked: true } };
+
+export const CheckedDisabled = {
+  ...Default,
+  args: { defaultChecked: true, disabled: true },
+};

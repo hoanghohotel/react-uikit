@@ -26,3 +26,9 @@ export const Dark = {
     </div>
   ),
 };
+
+export const Minimum = { ...Default, args: { defaultValue: 1 } };
+
+export const Maximum = { ...Default, args: { defaultValue: 6 } };
+
+export const Disabled = { ...Default, args: { disabled: true } };

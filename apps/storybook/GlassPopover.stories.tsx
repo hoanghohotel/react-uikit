@@ -25,3 +25,6 @@ export const Default = {
 };
 
 export const Dark = { ...Default, globals: { theme: "dark" } };
+
+export const Open = { ...Default, args: { defaultOpen: true } };
+export const OpenDark = { ...Open, globals: { theme: "dark" } };

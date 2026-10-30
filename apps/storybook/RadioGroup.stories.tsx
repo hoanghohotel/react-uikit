@@ -40,3 +40,20 @@ export const Dark = {
     </div>
   ),
 };
+
+export const Selected = { ...Default, args: { defaultValue: "express" } };
+
+export const Disabled = {
+  ...Default,
+  args: { disabled: true, defaultValue: "standard" },
+};
+
+export const DisabledOption = {
+  ...Default,
+  args: {
+    options: [
+      { value: "standard", label: "Standard" },
+      { value: "express", label: "Express", disabled: true },
+    ],
+  },
+};

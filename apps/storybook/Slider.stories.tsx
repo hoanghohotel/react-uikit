@@ -32,3 +32,13 @@ export const Disabled = {
     <UI.Slider label="Volume" disabled {...args} />
   ),
 };
+
+export const Minimum = {
+  ...Default,
+  args: { min: 0, max: 100, defaultValue: 0 },
+};
+
+export const Maximum = {
+  ...Default,
+  args: { min: 0, max: 100, defaultValue: 100 },
+};

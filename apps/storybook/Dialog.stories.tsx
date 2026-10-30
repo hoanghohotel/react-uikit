@@ -56,3 +56,5 @@ export const KeyboardInteraction = {
     await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
+
+export const Open = { ...Default, args: { defaultOpen: true } };

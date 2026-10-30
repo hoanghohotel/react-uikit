@@ -32,3 +32,13 @@ export const Disabled = {
     <UI.TextField label="Name" disabled {...args} />
   ),
 };
+
+export const ReadOnly = {
+  ...Default,
+  args: { readOnly: true, defaultValue: "Alex Chen" },
+};
+
+export const Invalid = {
+  ...Default,
+  args: { "aria-invalid": true, required: true, defaultValue: "" },
+};
