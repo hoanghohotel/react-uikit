@@ -11,3 +11,7 @@ Initial exports: Button, TextField, Switch, Card, GlassSurface, ChevronRight, us
 After `pnpm install --frozen-lockfile` and `pnpm build`, run `pnpm --filter @react-uikit/docs dev` for the Next.js documentation, or `pnpm --filter @react-uikit/storybook dev` for the component gallery. Production docs run with `pnpm --filter @react-uikit/docs start`. Processes must be restarted in new environments. Use the existing checkout; no additional Git worktree is needed.
 
 See [component contracts](docs/components.md) and [implementation status](docs/checklist.md). Current demos use local React state only.
+
+## Browser checks
+
+After `pnpm build`, run `pnpm exec playwright install chromium` and `pnpm test:browser`. In this cloud environment the browser CDN is blocked; use the preinstalled Chromium with `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium pnpm test:browser`. Tests launch a production docs server on port 3100 and stop it on completion.

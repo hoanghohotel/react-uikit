@@ -4,3 +4,6 @@ dist
 .turbo
 coverage
 pnpm-debug.log
+
+playwright-report
+test-results

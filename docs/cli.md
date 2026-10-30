@@ -9,7 +9,15 @@ node /workspace/react-uikit/packages/cli/src/index.mjs add button
 
 Supported components: `button`, `switch`, `glass-button`. Import the generated component from `./uikit/button`, and import `./uikit/theme.css` once in your application entry (Next.js root layout for App Router). These files require only the consumer's existing React dependency; they do not import the published UIKit packages.
 
-The installer detects the declared package manager or common lockfiles, validates React presence, and refuses existing `uikit` paths including symlinks. The first version intentionally supports one installation into a fresh `uikit` folder. To combine components, generate in separate temporary consumer projects and merge deliberately. Automated merging and overwrite confirmation are pending.
+The installer detects the declared package manager or common lockfiles and validates React presence. It adds new components to an existing regular `uikit` directory and reuses matching files. Repeating a completed installation is a no-op. Before writing, it checks all destination files and refuses modified source, modified shared CSS, directories at file paths, and symlinks. It never overwrites consumer edits.
+
+```sh
+node /workspace/react-uikit/packages/cli/src/index.mjs add button
+node /workspace/react-uikit/packages/cli/src/index.mjs add switch --dry-run
+node /workspace/react-uikit/packages/cli/src/index.mjs add switch
+```
+
+If shared CSS has changed, the installer stops before creating the new component. Merge source manually in that case; automatic merging and forced overwrite are intentionally not supported.
 
 The source-owned components are a smaller API than the package-based components: Button and GlassButton support native button attributes, and Switch adds a required label. React refs are forwarded. No claim of package/source API parity is made.
 

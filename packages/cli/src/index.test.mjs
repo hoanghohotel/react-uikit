@@ -35,10 +35,7 @@ test("installs independent source and tokens without overwriting", async (t) => 
     await readFile(path.join(dir, "uikit/theme.css"), "utf8"),
     /--uik-primary/,
   );
-  await assert.rejects(
-    install(["add", "button"], dir, () => {}),
-    /already exists/,
-  );
+  await install(["add", "button"], dir, () => {});
   assert.equal(
     await readFile(path.join(dir, "uikit/button.tsx"), "utf8"),
     source,
@@ -80,3 +77,68 @@ for (const component of ["switch", "glass-button"])
       /forwardRef/,
     );
   });
+test("adds another component and preserves matching shared tokens", async (t) => {
+  const dir = await project(t);
+  await install(["add", "button"], dir, () => {});
+  const tokens = await readFile(path.join(dir, "uikit/theme.css"), "utf8");
+  await install(["add", "switch"], dir, () => {});
+  assert.match(
+    await readFile(path.join(dir, "uikit/switch.tsx"), "utf8"),
+    /Switch/,
+  );
+  assert.equal(
+    await readFile(path.join(dir, "uikit/theme.css"), "utf8"),
+    tokens,
+  );
+});
+test("modified shared CSS prevents partial installation", async (t) => {
+  const dir = await project(t);
+  await install(["add", "button"], dir, () => {});
+  await writeFile(path.join(dir, "uikit/theme.css"), "custom styles");
+  await assert.rejects(
+    install(["add", "switch"], dir, () => {}),
+    /modifications/,
+  );
+  assert.deepEqual((await readdir(path.join(dir, "uikit"))).sort(), [
+    "button.tsx",
+    "theme.css",
+  ]);
+  assert.equal(
+    await readFile(path.join(dir, "uikit/theme.css"), "utf8"),
+    "custom styles",
+  );
+});
+test("modified component is never replaced", async (t) => {
+  const dir = await project(t);
+  await install(["add", "button"], dir, () => {});
+  await writeFile(path.join(dir, "uikit/button.tsx"), "custom component");
+  await assert.rejects(
+    install(["add", "button"], dir, () => {}),
+    /modifications/,
+  );
+  assert.equal(
+    await readFile(path.join(dir, "uikit/button.tsx"), "utf8"),
+    "custom component",
+  );
+});
+test("incremental dry run creates no files", async (t) => {
+  const dir = await project(t);
+  await install(["add", "button"], dir, () => {});
+  await install(["add", "switch", "--dry-run"], dir, () => {});
+  assert.deepEqual((await readdir(path.join(dir, "uikit"))).sort(), [
+    "button.tsx",
+    "theme.css",
+  ]);
+});
+test("rejects symlink component files", async (t) => {
+  const dir = await project(t);
+  await install(["add", "button"], dir, () => {});
+  await symlink(
+    path.join(dir, "package.json"),
+    path.join(dir, "uikit/switch.tsx"),
+  );
+  await assert.rejects(
+    install(["add", "switch"], dir, () => {}),
+    /not a regular file/,
+  );
+});

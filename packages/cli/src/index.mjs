@@ -7,7 +7,7 @@ const allowed = new Set(["button", "switch", "glass-button"]);
 export async function install(args, cwd = process.cwd(), log = console.log) {
   if (args.includes("--help")) {
     log(
-      "Usage: react-uikit add <button|switch|glass-button> [--dry-run]\nAdds independent React source and CSS to a new uikit directory. Existing files are never overwritten.",
+      "Usage: react-uikit add <button|switch|glass-button> [--dry-run]\nAdds independent React source and CSS to the uikit directory. Existing files are never overwritten.",
     );
     return;
   }
@@ -28,34 +28,53 @@ export async function install(args, cwd = process.cwd(), log = console.log) {
     );
   const manager =
     project.packageManager?.split("@")[0] ||
-    ((await exists(path.join(cwd, "pnpm-lock.yaml")))
+    ((await statOrNull(path.join(cwd, "pnpm-lock.yaml")))
       ? "pnpm"
-      : (await exists(path.join(cwd, "yarn.lock")))
+      : (await statOrNull(path.join(cwd, "yarn.lock")))
         ? "yarn"
         : "npm");
   if (!["npm", "pnpm", "yarn", "bun"].includes(manager))
     throw new Error(`Unsupported package manager: ${manager}`);
   const target = path.join(cwd, "uikit");
-  // Refuse all existing targets, including symlinks, to protect consumer files.
-  if (await exists(target))
+  const targetInfo = await statOrNull(target);
+  if (targetInfo && (!targetInfo.isDirectory() || targetInfo.isSymbolicLink()))
     throw new Error(
-      "uikit already exists. Choose a clean project directory or merge the generated source manually; nothing was overwritten.",
+      "uikit already exists and is not a regular directory. Nothing was overwritten.",
     );
   const files = [`${component}.tsx`, "theme.css"];
   const contents = await Promise.all(
     files.map((f) => readFile(new URL(f, registry), "utf8")),
   );
+  const planned = [];
+  for (let i = 0; i < files.length; i++) {
+    const dest = path.join(target, files[i]);
+    const info = await statOrNull(dest);
+    if (info) {
+      if (!info.isFile() || info.isSymbolicLink())
+        throw new Error(
+          `${files[i]} already exists and is not a regular file.`,
+        );
+      if ((await readFile(dest, "utf8")) !== contents[i])
+        throw new Error(
+          `${files[i]} already exists with modifications. Nothing was overwritten.`,
+        );
+    } else planned.push(i);
+  }
   log(
     `${deps.next ? "Next.js" : "React"} project; package manager: ${manager}. No additional dependencies are needed.`,
   );
-  if (flags.includes("--dry-run")) {
-    log(`Would create: ${files.map((f) => "uikit/" + f).join(", ")}`);
+  if (!planned.length) {
+    log("Already installed; no changes.");
     return;
   }
-  await mkdir(target);
+  if (flags.includes("--dry-run")) {
+    log(`Would create: ${planned.map((i) => "uikit/" + files[i]).join(", ")}`);
+    return;
+  }
+  if (!targetInfo) await mkdir(target);
   const written = [];
   try {
-    for (let i = 0; i < files.length; i++) {
+    for (const i of planned) {
       const dest = path.join(target, files[i]);
       await writeFile(dest, contents[i], { flag: "wx" });
       written.push(dest);
@@ -65,15 +84,14 @@ export async function install(args, cwd = process.cwd(), log = console.log) {
     throw error;
   }
   log(
-    `Created ${files.map((f) => "uikit/" + f).join(", ")}. Import uikit/theme.css once from your application entry or Next.js root layout.`,
+    `Created ${planned.map((i) => "uikit/" + files[i]).join(", ")}. Import uikit/theme.css once from your application entry or Next.js root layout.`,
   );
 }
-async function exists(file) {
+async function statOrNull(file) {
   try {
-    await lstat(file);
-    return true;
+    return await lstat(file);
   } catch (error) {
-    if (error.code === "ENOENT") return false;
+    if (error.code === "ENOENT") return null;
     throw error;
   }
 }

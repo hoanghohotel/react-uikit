@@ -34,7 +34,7 @@ export default function Page() {
             Inside this workspace, add the packages using the workspace protocol
             and import the stylesheet once.
           </p>
-          <pre>
+          <pre tabIndex={0} aria-label="Installation code">
             <code>{`import '@react-uikit/tokens/theme.css';
 import { Button } from '@react-uikit/core';
 

@@ -12,6 +12,17 @@ import {
   TextArea,
   SearchField,
 } from "@react-uikit/core";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  TabView,
+  TabList,
+  Tab,
+  TabPanel,
+} from "@react-uikit/core/interactive";
 import { GlassSurface } from "@react-uikit/glass";
 export function Demo() {
   const [theme, setTheme] = useState("light");
@@ -73,6 +84,32 @@ export function Demo() {
             <p>Native inputs keep familiar browser interactions.</p>
           </Card>
         </div>
+      </section>
+      <section aria-labelledby="interaction-heading">
+        <h2 id="interaction-heading">Keyboard-first interactions.</h2>
+        <Dialog>
+          <DialogTrigger className="uik-button">Open settings</DialogTrigger>
+          <DialogContent>
+            <DialogTitle>Workspace settings</DialogTitle>
+            <DialogDescription>
+              Explore focus management and keyboard navigation.
+            </DialogDescription>
+            <TextField label="Display name" defaultValue="Studio" />
+            <Button onClick={() => setSaved(true)}>Apply settings</Button>
+          </DialogContent>
+        </Dialog>
+        <TabView defaultValue="general" style={{ marginTop: 24 }}>
+          <TabList aria-label="Settings sections">
+            <Tab value="general">General</Tab>
+            <Tab value="advanced">Advanced</Tab>
+          </TabList>
+          <TabPanel value="general">
+            <p>General workspace preferences.</p>
+          </TabPanel>
+          <TabPanel value="advanced">
+            <p>Advanced workspace preferences.</p>
+          </TabPanel>
+        </TabView>
       </section>
       <section id="glass">
         <p className="eyebrow">03 / LIQUID GLASS</p>

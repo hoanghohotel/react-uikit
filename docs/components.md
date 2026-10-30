@@ -60,4 +60,4 @@ Dialog supports `open`, `defaultOpen`, `onOpenChange`, and Radix Root props. Dia
 
 TabView accepts `value`, `defaultValue`, `onValueChange`, `orientation`, `dir` and Radix Root props. Give TabList an accessible name. Each Tab and TabPanel needs a matching value. Tabs support disabled state and Radix automatic/manual activation. Arrow keys move focus; panels expose the corresponding labels.
 
-Unit tests verify basic focus placement/restoration, Escape dismissal, controlled close intent, and arrow-key tab activation. Real-browser focus trapping, screen-reader review, and axe validation remain pending.
+Unit tests verify basic focus placement/restoration, Escape dismissal, controlled close intent, and arrow-key tab activation. Chromium desktop/mobile checks verify focus containment and restoration, keyboard tabs, and axe scans of the docs demos. Other browser engines and screen-reader review remain pending.

@@ -27,7 +27,7 @@
 - [x] Real local CLI binary with three independent source templates
 - [x] Dry run, React/Next detection and package manager detection
 - [x] Existing path/symlink protection and installation tests
-- [ ] Incremental installation into existing generated directories
+- [x] Incremental installation into existing generated directories
 - [ ] Dependency installation for components needing additional packages
 - [ ] CLI npm publication and name availability check
 
@@ -36,4 +36,11 @@
 - [x] Composable Radix Dialog with modal overlay, title, description and close control
 - [x] Composable Radix Tabs with keyboard navigation and panel associations
 - [x] Separate client entry, docs and Storybook examples
-- [ ] Real-browser focus trapping and axe checks
+- [x] Chromium focus trapping and axe checks for the docs demos (desktop/mobile viewports)
+
+## Browser validation
+
+- [x] 18 Playwright checks against production docs
+- [x] Nested dark-theme contrast and scrollable code keyboard access fixed
+- [x] CI browser installation, test command and failure trace upload configured
+- [ ] Firefox, WebKit and manual screen-reader validation

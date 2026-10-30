@@ -1,15 +1,19 @@
 # Validation record
 
-Local checks performed during implementation:
+Local checks completed:
 
-- `pnpm typecheck`: TypeScript for packages and unit tests.
-- `pnpm test`: 12 React interaction tests across 3 files and 7 CLI tests passed.
-- `pnpm lint`: ESLint passed.
-- `pnpm build`: library declaration builds, Next.js production build and Storybook static build.
-- `pnpm --filter @react-uikit/docs start`: production server started; HTTP request verified the home heading and shared form controls in rendered HTML.
+- `pnpm typecheck`: package and test TypeScript passed.
+- `pnpm lint`: passed.
+- `pnpm test`: 12 React interaction tests and 12 CLI tests passed.
+- `pnpm build`: builds library declarations, CLI syntax check, Next.js production site and Storybook gallery.
+- `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium pnpm test:browser`: 18 tests passed against the production Next.js site, across desktop and emulated mobile viewports.
 
-The HTTP check does not verify hydration, browser keyboard behavior, or visual appearance. Browser/axe tests and full per-component Storybook coverage remain pending. Storybook emits a large-chunk warning for its gallery runtime. Dependency installation reports deprecation notices for ESLint 9 and jest-dom 6.10; dependency modernization remains outstanding.
+Browser checks cover hydrated form submission, modal focus containment and restoration, Escape dismissal, keyboard tab selection, light/dark WCAG A/AA axe scans, the open dialog axe scan, system theme switching, code-block focus and horizontal overflow. They found and verified fixes for nested dark-theme contrast and keyboard access to scrollable code.
 
-Chromatic is configured but has not run. Set `CHROMATIC_PROJECT_TOKEN` in GitHub Actions secrets before using the visual review workflow. It does not automatically approve visual changes. No packages, site, or environment have been published by this implementation.
+The Playwright browser CDN is blocked by this environment's network policy. Local validation used the installed system Chromium. CI installs Playwright's pinned Chromium and runs the same suite. Remote GitHub Actions results have not been verified. Mobile viewport emulation is not an iOS Safari or WebKit test. Automated axe checks are not a complete accessibility audit; screen-reader review, remaining components and additional engines are pending.
 
-CLI binary help and local tarball packaging were exercised. Dialog/Tabs tests cover focus restoration, Escape dismissal and arrow-key tab activation in jsdom; this does not replace browser verification.
+CLI checks cover incremental installation, idempotence, dry runs, independent source output, modified file protection and symlink rejection. The installer does not merge edited CSS automatically.
+
+Storybook still emits a gallery chunk-size warning. Dependency installation reports deprecation notices for ESLint 9 and jest-dom 6.10; modernization remains outstanding.
+
+Chromatic is configured but has not run locally. Set `CHROMATIC_PROJECT_TOKEN` in GitHub Actions secrets before using visual review. No packages or website have been published.
