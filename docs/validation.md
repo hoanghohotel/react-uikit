@@ -16,9 +16,13 @@ The implementation remains a development preview. These are observed checks, not
 
 ## Environment and external checks
 
-Playwright browser downloads from cdn.playwright.dev are currently blocked. Local browser validation uses `/usr/bin/chromium`; this is not Playwright's pinned browser. Firefox, WebKit and manual screen-reader review remain outstanding. A network draft adds the denied browser CDN and GitHub API domains; it is saved but not published or applied.
+The previous environment blocked the Playwright CDN. Local browser validation used `/usr/bin/chromium`, not Playwright's pinned browser. Browser downloads have not been retried in the newly published environment; Firefox, WebKit and manual screen-reader review remain outstanding.
 
-GitHub API access returns Forbidden, so remote Actions results have not been verified. Native Git push works. Chromatic CLI 18.13.6 was executed with the supplied token via process environment. Authentication could not reach https://index.chromatic.com/graphql (403); an independent token-free request failed at CONNECT with 403, establishing a proxy/network block before token validity could be determined. No upload or visual baseline was completed. The network draft now also includes index.chromatic.com. Project tokens are never stored in repository files.
+After environment publication, Chromatic and GitHub API connections succeeded. GitHub Checks run [41065070964](https://github.com/hoanghohotel/react-uikit/actions/runs/41065070964) completed successfully.
+
+Chromatic CLI 18.13.6 authenticated and completed build 1 for commit 0e27fd1: 74 components, 166 stories, 498 snapshots; exit code 0. The service automatically accepted the initial baseline. No automatic-change-approval flag was supplied, and manual visual review has not been performed. [Published Storybook](https://6ae474d201c5880f377c33a4-lvbzsdcqhe.chromatic.com/).
+
+The earlier GitHub Visual review run [41065071080](https://github.com/hoanghohotel/react-uikit/actions/runs/41065071080) failed because CHROMATIC_PROJECT_TOKEN was missing from repository Actions secrets. Attempting to configure the encrypted repository secret was rejected by GitHub: HTTP 403 Resource not accessible by integration on the repository public-key endpoint. A repository administrator must add that secret through GitHub settings. The token has not been stored in repository files.
 
 Public npm lookups did not find the seven package names. This does not establish ownership of the npm scope or permission to publish. See npm-name-check.json and release.md.
 

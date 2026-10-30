@@ -50,8 +50,10 @@
 - [x] Package export/declaration/client-boundary checks and release instructions
 - [x] Final 166-story browser sweep completed after latest gallery additions
 - [ ] Firefox/WebKit and manual screen-reader review
-- [ ] GitHub Actions results verified (GitHub API returns Forbidden here)
-- [ ] Chromatic baseline captured and reviewed (token supplied; proxy blocks index.chromatic.com)
+- [x] GitHub Checks workflow verified successful
+- [ ] Automated Visual review: repository administrator must configure CHROMATIC_PROJECT_TOKEN
+- [x] Chromatic build 1 captured 498 snapshots across 166 stories
+- [ ] Manual visual review of the service-created initial baseline
 - [ ] npm scope ownership and release publication approved
 
 The project remains a development preview. A populated checklist is not a release certification; see validation.md for executed commands, counts and limitations.
