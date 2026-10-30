@@ -53,7 +53,7 @@ Import client composites from the `/interactive` entry. Both package and source-
 ## Validation
 
 ```sh
-pnpm exec playwright install chromium
+pnpm exec playwright install --with-deps chromium firefox webkit
 pnpm test:browser
 ```
 
@@ -63,6 +63,15 @@ The browser suite launches production docs on port 3100 and a static Storybook s
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium pnpm test:browser
 ```
 
-It checks desktop/mobile Chromium interactions, axe scans, localization, templates, and every Storybook story. Mobile emulation is not an iOS Safari test. No full accessibility certification or cross-browser parity is claimed.
+It checks desktop/mobile Chromium, Firefox and WebKit interactions, axe scans, localization and templates; the gallery sweep uses Chromium. Mobile emulation and Linux WebKit are not physical iOS Safari tests. No full accessibility certification is claimed.
 
 See [validation evidence](docs/validation.md), [component contracts](docs/component-contracts.md), [source CLI](docs/cli.md), [tokens](docs/tokens.md), [implementation checklist](docs/checklist.md) and [release preparation](docs/release.md). Regenerate the API tables with `pnpm docs:api`.
+
+For a Debian 13 cloud machine without root access, install Firefox/WebKit with Playwright, then run `python scripts/setup-browser-libs.py`. The helper downloads signature-verified Debian packages into `/workspace/browser-libs`, validates the libraries, and creates a WebKit launcher without altering browser artifacts. Run the suite with:
+
+```sh
+LD_LIBRARY_PATH=/workspace/browser-libs/root/usr/lib/x86_64-linux-gnu \
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium \
+PLAYWRIGHT_WEBKIT_EXECUTABLE_PATH=/workspace/browser-libs/webkit.sh \
+pnpm test:browser
+```

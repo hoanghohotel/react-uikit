@@ -155,13 +155,21 @@ for (const route of ["/lab", "/templates", "/vi/introduction"])
       ).violations,
     ).toEqual([]);
   });
-test("copy code writes the displayed source", async ({ page, context }) => {
-  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+test("copy code writes the displayed source", async ({
+  page,
+  context,
+  browserName,
+}) => {
+  if (browserName === "chromium")
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("/en/installation");
   const code = await page.locator("pre code").textContent();
   await page.getByRole("button", { name: "Copy code" }).click();
   await expect(page.getByRole("status")).toHaveText("Copied");
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(code);
+  if (browserName === "chromium")
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+      code,
+    );
 });
 test("forced colors disables glass blur", async ({ page }) => {
   await page.goto("/lab");
@@ -173,7 +181,9 @@ test("Vietnamese live demo labels and interactions are localized", async ({
 }) => {
   await page.goto("/vi/components");
   await page.getByRole("button", { name: "Lưu tùy chọn" }).click();
-  await expect(page.locator(".preview").getByRole("status")).toContainText("Đã lưu tùy chọn");
+  await expect(page.locator(".preview").getByRole("status")).toContainText(
+    "Đã lưu tùy chọn",
+  );
   await page.getByRole("button", { name: "Mở cài đặt" }).click();
   await expect(
     page.getByRole("dialog", { name: "Cài đặt không gian" }),

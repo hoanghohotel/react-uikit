@@ -9,9 +9,6 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:3100",
     trace: "retain-on-failure",
-    launchOptions: {
-      executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
-    },
   },
   webServer: [
     {
@@ -29,19 +26,50 @@ export default defineConfig({
   ],
   projects: [
     {
+      name: "firefox",
+      testIgnore: "**/stories.spec.ts",
+      use: { ...devices["Desktop Firefox"] },
+    },
+    {
+      name: "webkit",
+      testIgnore: "**/stories.spec.ts",
+      use: {
+        ...devices["Desktop Safari"],
+        launchOptions: {
+          executablePath: process.env.PLAYWRIGHT_WEBKIT_EXECUTABLE_PATH,
+        },
+      },
+    },
+    {
       name: "gallery",
       testMatch: "**/stories.spec.ts",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        launchOptions: {
+          executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
+        },
+      },
     },
     {
       name: "chromium",
       testIgnore: "**/stories.spec.ts",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        launchOptions: {
+          executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
+        },
+      },
     },
     {
       name: "mobile",
       testIgnore: "**/stories.spec.ts",
-      use: { ...devices["iPhone 13"], defaultBrowserType: "chromium" },
+      use: {
+        ...devices["iPhone 13"],
+        defaultBrowserType: "chromium",
+        launchOptions: {
+          executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
+        },
+      },
     },
   ],
 });

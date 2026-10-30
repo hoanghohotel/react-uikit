@@ -12,4 +12,4 @@ No automatic npm publication is configured. Publishing packages requires explici
 
 Changesets currently uses the repository's initial `feat/react-uikit` branch as the comparison base because the remote has no main branch. Switch baseBranch to main when a reviewed main branch is established.
 
-Public npm lookups during this task did not find the seven names (see npm-name-check.json). Scope ownership is still unverified. Chromatic build 1 now passes with 498 snapshots. Manual baseline review and an administrator-configured CHROMATIC_PROJECT_TOKEN GitHub Actions secret remain necessary.
+Public npm lookups during this task did not find the seven names (see npm-name-check.json). Scope ownership is still unverified. Chromatic builds 1 and 2 pass with 498 snapshots; GitHub Actions now receives the environment-scoped token. Manual baseline and screen-reader review remain necessary before release approval.

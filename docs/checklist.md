@@ -49,9 +49,10 @@
 - [x] Chromium desktop/mobile interaction and axe checks
 - [x] Package export/declaration/client-boundary checks and release instructions
 - [x] Final 166-story browser sweep completed after latest gallery additions
-- [ ] Firefox/WebKit and manual screen-reader review
+- [x] Firefox and WebKit: 19 documentation checks each pass
+- [ ] Manual screen-reader review
 - [x] GitHub Checks workflow verified successful
-- [ ] Automated Visual review: repository administrator must configure CHROMATIC_PROJECT_TOKEN
+- [x] Automated Visual review succeeds using the configured GitHub Environment secret
 - [x] Chromatic build 1 captured 498 snapshots across 166 stories
 - [ ] Manual visual review of the service-created initial baseline
 - [ ] npm scope ownership and release publication approved
