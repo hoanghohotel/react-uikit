@@ -21,3 +21,19 @@
 - [x] Storybook 10.6.5 Vite gallery builds from shared source
 - [x] Chromatic workflow configured (not executed; project token required in GitHub)
 - [ ] Chromatic baseline captured and reviewed
+
+## Source installation CLI
+
+- [x] Real local CLI binary with three independent source templates
+- [x] Dry run, React/Next detection and package manager detection
+- [x] Existing path/symlink protection and installation tests
+- [ ] Incremental installation into existing generated directories
+- [ ] Dependency installation for components needing additional packages
+- [ ] CLI npm publication and name availability check
+
+## Interactive primitives
+
+- [x] Composable Radix Dialog with modal overlay, title, description and close control
+- [x] Composable Radix Tabs with keyboard navigation and panel associations
+- [x] Separate client entry, docs and Storybook examples
+- [ ] Real-browser focus trapping and axe checks

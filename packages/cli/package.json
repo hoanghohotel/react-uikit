@@ -1,0 +1,19 @@
+{
+  "name": "@react-uikit/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "react-uikit": "./src/index.mjs"
+  },
+  "files": [
+    "src",
+    "registry"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node --check src/index.mjs",
+    "test": "node --test src/index.test.mjs"
+  }
+}

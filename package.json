@@ -5,7 +5,7 @@
   "scripts": {
     "build": "turbo run build",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run && pnpm --filter @react-uikit/cli test",
     "lint": "eslint .",
     "changeset": "changeset"
   },

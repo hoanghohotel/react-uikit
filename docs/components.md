@@ -27,3 +27,37 @@ Each forwards its element ref and accepts standard element attributes, className
 GlassSurface (`@react-uikit/glass`) accepts `material="subtle" | "regular" | "prominent"`, standard div props, and a forwarded ref. It is decorative, not a dialog. Its CSS includes opaque fallbacks; browser-level verification remains pending.
 
 The documentation demo saves preferences only in component memory and does not imply backend persistence.
+
+## Dialog and Tabs
+
+Import interactive primitives from `@react-uikit/core/interactive` within a client component. This entry preserves `use client` in its distribution and delegates focus behavior to Radix.
+
+```tsx
+import {
+  Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription,
+  TabView, TabList, Tab, TabPanel,
+} from '@react-uikit/core/interactive';
+
+<Dialog>
+  <DialogTrigger>Settings</DialogTrigger>
+  <DialogContent closeLabel="Close settings">
+    <DialogTitle>Settings</DialogTitle>
+    <DialogDescription>Update your workspace preferences.</DialogDescription>
+  </DialogContent>
+</Dialog>
+
+<TabView defaultValue="general">
+  <TabList aria-label="Settings sections">
+    <Tab value="general">General</Tab>
+    <Tab value="advanced">Advanced</Tab>
+  </TabList>
+  <TabPanel value="general">General preferences</TabPanel>
+  <TabPanel value="advanced">Advanced preferences</TabPanel>
+</TabView>
+```
+
+Dialog supports `open`, `defaultOpen`, `onOpenChange`, and Radix Root props. DialogTrigger and DialogClose support `asChild`. Include a DialogTitle and DialogDescription; deliberately omit the description only by setting `aria-describedby={undefined}` on DialogContent. DialogContent forwards content props/ref and adds a localized `closeLabel` (default English). The default modal traps focus, closes on Escape, and restores focus to its trigger. Portals inherit the document theme; put the application theme on html/body if the whole app must share it.
+
+TabView accepts `value`, `defaultValue`, `onValueChange`, `orientation`, `dir` and Radix Root props. Give TabList an accessible name. Each Tab and TabPanel needs a matching value. Tabs support disabled state and Radix automatic/manual activation. Arrow keys move focus; panels expose the corresponding labels.
+
+Unit tests verify basic focus placement/restoration, Escape dismissal, controlled close intent, and arrow-key tab activation. Real-browser focus trapping, screen-reader review, and axe validation remain pending.

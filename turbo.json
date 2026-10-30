@@ -9,6 +9,9 @@
         ".next/**",
         "!.next/cache/**"
       ]
+    },
+    "@react-uikit/cli#build": {
+      "outputs": []
     }
   }
 }
