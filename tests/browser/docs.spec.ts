@@ -190,3 +190,47 @@ test("Vietnamese live demo labels and interactions are localized", async ({
   ).toBeVisible();
   await page.getByRole("button", { name: "Đóng hộp thoại" }).click();
 });
+test("Vietnamese templates support settings, tasks, and administration", async ({
+  page,
+}) => {
+  await page.goto("/vi/templates");
+  await page.getByRole("link", { name: "Mở mẫu tương tác" }).click();
+  await expect(page).toHaveURL(/\/vi\/templates\/demo$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Mẫu ứng dụng",
+  );
+  await page.getByLabel("Tên không gian").fill("Nhóm thiết kế");
+  await page.getByRole("button", { name: "Lưu cài đặt" }).click();
+  await expect(page.getByRole("status")).toHaveText(
+    "Đã lưu cài đặt cho Nhóm thiết kế",
+  );
+  await page.getByRole("tab", { name: "Công việc", exact: true }).click();
+  await expect(
+    page.getByRole("checkbox", { name: "Kiểm tra điều hướng" }),
+  ).toBeVisible();
+  await page.getByLabel("Công việc mới").fill("Hoàn thiện tài liệu");
+  await page.getByRole("button", { name: "Thêm công việc" }).click();
+  await page.getByRole("checkbox", { name: "Hoàn thiện tài liệu" }).check();
+  await expect(page.getByText("Đã hoàn thành 2/3 công việc")).toBeVisible();
+  await page.getByRole("tab", { name: "Quản trị", exact: true }).click();
+  await page.getByRole("searchbox", { name: "Tìm thành viên" }).fill("Alex");
+  await expect(
+    page.getByRole("cell", { name: "Biên tập viên", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Tạm dừng Alex Chen" }).click();
+  await expect(
+    page.getByRole("button", { name: "Kích hoạt Alex Chen" }),
+  ).toBeVisible();
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+  await page.getByRole("link", { name: "English" }).click();
+  await expect(page).toHaveURL(/\/en\/templates\/demo$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Application patterns",
+  );
+});

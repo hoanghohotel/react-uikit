@@ -27,7 +27,7 @@ pnpm --filter @react-uikit/example-react dev
 pnpm --filter @react-uikit/example-next dev
 ```
 
-Processes must be restarted in new environments. Documentation includes English/Vietnamese sections, searchable navigation, copyable code, live previews, API tables, an interaction laboratory and three templates. Example data is local state and resets on reload.
+Processes must be restarted in new environments. Documentation includes English/Vietnamese sections, searchable navigation, copyable code, live previews, API tables, an interaction laboratory and three templates in English (`/en/templates/demo`) and Vietnamese (`/vi/templates/demo`). Example data is local state and resets on reload.
 
 ## Packages
 

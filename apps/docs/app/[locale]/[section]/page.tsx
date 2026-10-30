@@ -107,7 +107,7 @@ export default async function Documentation({
             </section>
           )}
           {key === "templates" && (
-            <Link href="/templates">
+            <Link href={`/${lang}/templates/demo`}>
               {lang === "vi"
                 ? "Mở mẫu tương tác"
                 : "Open interactive templates"}

@@ -40,7 +40,7 @@
 - [x] Dialog dependency installation; real temporary React consumer installation
 - [x] Storybook categories, individual examples, responsive Chromatic configuration
 - [x] English/Vietnamese content and live documentation component demos
-- [ ] Application-template sample content localization beyond English
+- [x] English/Vietnamese application templates, accessible labels and interaction feedback
 - [ ] Exhaustive state coverage for every composable subcomponent
 
 ## Phase 6 — Validation and release preparation
@@ -49,7 +49,7 @@
 - [x] Chromium desktop/mobile interaction and axe checks
 - [x] Package export/declaration/client-boundary checks and release instructions
 - [x] Final 166-story browser sweep completed after latest gallery additions
-- [x] Firefox and WebKit: 19 documentation checks each pass
+- [x] Firefox and WebKit: 20 documentation checks each pass
 - [ ] Manual screen-reader review
 - [x] GitHub Checks workflow verified successful
 - [x] Automated Visual review succeeds using the configured GitHub Environment secret

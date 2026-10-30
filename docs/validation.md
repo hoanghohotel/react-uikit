@@ -27,3 +27,9 @@ GitHub [Checks run 41068783366](https://github.com/hoanghohotel/react-uikit/acti
 Public npm lookups did not find the seven package names. This does not establish ownership of the npm scope or permission to publish. See npm-name-check.json and release.md.
 
 Storybook emits a gallery chunk-size warning and Vite notes ignored client directives in its browser-only bundle. Published library interactive entries preserve client directives. No npm publication or manual site deployment was performed by this task. The remote vercel.json commit was preserved and merged; any external Vercel automation has not been inspected.
+
+## Localized application templates
+
+The settings, productivity and administration templates now have English and Vietnamese routes at `/en/templates/demo` and `/vi/templates/demo`; `/templates` remains the English entry. Documentation links preserve the selected language. Labels, seeded tasks, roles, counts, status feedback and member actions are localized. Switching language navigates to a fresh demo, consistent with the documented local-state reset behavior.
+
+After this change, the production documentation build, TypeScript and ESLint passed. The complete browser suite passed 81 cases in 45.6 seconds, including localized settings submission, task completion, member filtering/status changes, language navigation and axe checks on all four documentation projects.
