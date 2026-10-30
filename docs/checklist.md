@@ -39,7 +39,8 @@
 - [x] Incremental source installation, dry-run and edited-file/symlink protection
 - [x] Dialog dependency installation; real temporary React consumer installation
 - [x] Storybook categories, individual examples, responsive Chromatic configuration
-- [ ] Every locale string in every live component demo translated (content pages are bilingual)
+- [x] English/Vietnamese content and live documentation component demos
+- [ ] Application-template sample content localization beyond English
 - [ ] Exhaustive state coverage for every composable subcomponent
 
 ## Phase 6 — Validation and release preparation
@@ -47,10 +48,10 @@
 - [x] Local typecheck, lint, unit/CLI tests and monorepo production builds
 - [x] Chromium desktop/mobile interaction and axe checks
 - [x] Package export/declaration/client-boundary checks and release instructions
-- [ ] Final Storybook browser sweep completed after latest gallery additions
+- [x] Final 166-story browser sweep completed after latest gallery additions
 - [ ] Firefox/WebKit and manual screen-reader review
 - [ ] GitHub Actions results verified (GitHub API returns Forbidden here)
-- [ ] Chromatic baseline captured and reviewed (project token unavailable)
+- [ ] Chromatic baseline captured and reviewed (token supplied; proxy blocks index.chromatic.com)
 - [ ] npm scope ownership and release publication approved
 
 The project remains a development preview. A populated checklist is not a release certification; see validation.md for executed commands, counts and limitations.

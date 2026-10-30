@@ -11,3 +11,5 @@ No automatic npm publication is configured. Publishing packages requires explici
 7. Obtain explicit approval before publishing to npm or deploying the documentation site.
 
 Changesets currently uses the repository's initial `feat/react-uikit` branch as the comparison base because the remote has no main branch. Switch baseBranch to main when a reviewed main branch is established.
+
+Public npm lookups during this task did not find the seven names (see npm-name-check.json). Scope ownership is still unverified. Chromatic execution is currently blocked by the environment proxy at index.chromatic.com, rather than a verified token rejection.
