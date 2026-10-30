@@ -7,6 +7,7 @@ permissions:
   contents: read
 jobs:
   chromatic:
+    environment: CHROMATIC_PROJECT_TOKEN
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
